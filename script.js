@@ -87,7 +87,7 @@ function initHeroParallax() {
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    if (scrollY < window.innerHeight && window.innerWidth > 899) {
+    if (scrollY < window.innerHeight) {
       portrait.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`;
     }
   }, { passive: true });

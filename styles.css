@@ -5,7 +5,7 @@
 
 /* --- Strictly Restrained Monochromatic Design Tokens --- */
 :root {
-  --outer-bg: #e5e3dd;         /* Warm light-grey gallery outer canvas */
+  --outer-bg: #000000;         /* Deep black */
   --frame-bg: #000000;         /* Pure deep black */
   --surface-charcoal: #0e0e0e; /* Deep charcoal for sub-panels */
   --surface-elevated: #181818;
@@ -23,8 +23,8 @@
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
   /* Sizing & Transitions */
-  --frame-radius: 28px;
-  --frame-radius-sm: 18px;
+  --frame-radius: 0px;
+  --frame-radius-sm: 0px;
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
   --trans-fast: 0.22s var(--ease-editorial);
   --trans-smooth: 0.6s var(--ease-editorial);
@@ -42,16 +42,16 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--outer-bg);
+  background-color: var(--frame-bg);
   color: var(--text-white);
 }
 
 body {
-  background-color: var(--outer-bg);
+  background-color: var(--frame-bg);
   color: var(--text-white);
   font-family: var(--font-body);
   line-height: 1.6;
-  padding: clamp(0.75rem, 2vw, 1.75rem);
+  padding: 0;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -135,26 +135,26 @@ img {
 }
 
 /* ==========================================================================
-   MASTER MONOLITH FRAME: The Grand Rounded Near-Black Canvas
+   MASTER FULL-SCREEN CANVAS: Seamless Monochromatic Canvas
    ========================================================================== */
 .monolith-frame {
   width: 100%;
-  max-width: 1560px;
+  max-width: 100%;
   margin: 0 auto;
   background-color: var(--frame-bg);
-  border-radius: var(--frame-radius);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
   position: relative;
   overflow: hidden;
 }
 
 @media (max-width: 768px) {
   body {
-    padding: 0.5rem;
+    padding: 0;
   }
   .monolith-frame {
-    border-radius: var(--frame-radius-sm);
+    border-radius: 0;
   }
 }
 
@@ -162,9 +162,9 @@ img {
    1. HERO SECTION: DIRECT TRANSLATION OF THE REFERENCE IMAGE
    ========================================================================== */
 .hero-stage {
-  height: calc(100vh - clamp(1.5rem, 4vw, 3.5rem));
+  height: 100vh;
   min-height: 640px;
-  max-height: 1020px;
+  max-height: 1080px;
   position: relative;
   display: flex;
   flex-direction: column;

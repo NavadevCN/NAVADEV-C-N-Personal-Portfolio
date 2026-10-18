@@ -411,53 +411,49 @@ img {
 }
 
 /* ==========================================================================
-   MOBILE HERO SECTION: UNIFIED DESKTOP VIEW WITH HORIZONTAL SCROLL
+   MOBILE HERO SECTION: PORTRAIT ABOVE NAME WITH SCREEN-FITTED TYPOGRAPHY
    ========================================================================== */
 @media (max-width: 899px) {
   .hero-stage {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 560px;
-    max-height: 900px;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
     padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow-x: hidden;
     position: relative;
     display: block;
+    width: 100%;
   }
 
-  .hero-stage::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Single unified desktop composition on mobile, horizontally scrollable */
   .hero-canvas {
-    width: 960px;
-    min-width: 960px;
-    height: 100%;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2.25rem 2.25rem 2.75rem;
+    padding: clamp(1.75rem, 4vh, 2.25rem) clamp(1.25rem, 4.5vw, 2rem) clamp(2rem, 5vh, 2.75rem);
     box-sizing: border-box;
-    flex-shrink: 0;
+    gap: 1.25rem;
   }
 
+  /* 1. Top Row: Navigation Links */
   .hero-top-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
     z-index: 10;
+    width: 100%;
   }
 
   .hero-nav-block {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.15rem;
   }
 
   .hero-nav-links {
@@ -468,99 +464,121 @@ img {
   }
 
   .hero-nav-link {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
   }
 
+  .hero-copyright-tag {
+    font-size: 0.7rem;
+  }
+
+  /* 2. Middle: Cutout Portrait Positioned Directly Above the Name */
   .hero-portrait-canvas {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
     z-index: 2;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    pointer-events: none;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    overflow: visible;
+    width: 100%;
+    margin: 0.5rem auto;
   }
 
   .hero-portrait-wrap {
     position: relative;
-    height: 100%;
+    height: auto;
+    width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding-right: 2rem;
-    padding-top: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 
   .hero-portrait-img {
-    height: 74vh;
-    max-height: 640px;
+    height: clamp(260px, 40vh, 390px);
+    max-height: 42vh;
     width: auto;
-    max-width: 480px;
+    max-width: 82vw;
     object-fit: contain;
-    object-position: top right;
+    object-position: center;
     filter: grayscale(100%) contrast(1.18) brightness(0.96);
-    mask-image: linear-gradient(to bottom, black 76%, rgba(0, 0, 0, 0.45) 90%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 76%, rgba(0, 0, 0, 0.45) 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, rgba(0, 0, 0, 0.35) 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, rgba(0, 0, 0, 0.35) 94%, transparent 100%);
+    margin: 0 auto;
   }
 
+  /* 3. Bottom Row: Name & Academic Statement Fitted Perfectly */
   .hero-bottom-row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     position: relative;
     z-index: 10;
     width: 100%;
-    gap: 2rem;
+    gap: 1.15rem;
+    margin-top: auto;
   }
 
   .hero-bottom-left-stack {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: calc(100% - 130px);
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-oversized-title {
+    width: 100%;
     text-align: left;
   }
 
   .hero-title-line {
-    font-size: 5.6rem;
-    line-height: 0.84;
+    font-size: clamp(2.8rem, 13.5vw, 4.4rem);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    word-break: break-word;
   }
 
   .hero-title-subline-wrap {
     display: flex;
-    align-items: baseline;
-    gap: 2rem;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    width: 100%;
+    margin-top: 0.25rem;
   }
 
   .hero-identity-statement {
     text-align: left;
-    padding-bottom: 0.6rem;
-    align-self: flex-end;
-    white-space: nowrap;
+    padding-bottom: 0;
+    align-self: flex-start;
+    width: 100%;
   }
 
   .hero-identity-statement .identity-course {
-    font-size: 0.82rem;
+    font-size: clamp(0.72rem, 3.4vw, 0.86rem);
+    line-height: 1.4;
+    letter-spacing: 0.14em;
   }
 
   .hero-identity-statement .identity-college {
-    font-size: 0.72rem;
+    font-size: clamp(0.68rem, 2.9vw, 0.76rem);
+    margin-top: 0.25rem;
+    letter-spacing: 0.12em;
   }
 
   .hero-scroll-indicator {
     display: flex;
+    align-self: flex-end;
     align-items: center;
-    gap: 0.75rem;
-    padding-bottom: 0.75rem;
-    flex-shrink: 0;
+    gap: 0.65rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25rem;
   }
 }
 

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initSmoothScroll();
   initHeroParallax();
+  initMobileHeroHorizontalScroll();
   initHeadingScrollAnimation();
 });
 
@@ -79,7 +80,7 @@ function initSmoothScroll() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Subtle Hero Portrait Parallax on Scroll
+   5. Subtle Hero Portrait Parallax on Scroll (Desktop only)
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
   const portrait = document.getElementById('heroPortrait');
@@ -87,9 +88,65 @@ function initHeroParallax() {
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-    if (scrollY < window.innerHeight) {
+    if (scrollY < window.innerHeight && window.innerWidth > 899) {
       portrait.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`;
     }
+  }, { passive: true });
+}
+
+/* --------------------------------------------------------------------------
+   5b. Mobile Hero Horizontal Scroll & Pan (Between Name & Full Portrait)
+   -------------------------------------------------------------------------- */
+function initMobileHeroHorizontalScroll() {
+  const heroStage = document.getElementById('hero');
+  const panToPortraitBtn = document.getElementById('heroPanToPortrait');
+  const panToTitleBtn = document.getElementById('heroPanToTitle');
+  const dots = document.querySelectorAll('#heroMobileDots .hero-dot');
+
+  if (!heroStage) return;
+
+  // Pan to Portrait on button click
+  if (panToPortraitBtn) {
+    panToPortraitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      heroStage.scrollTo({
+        left: heroStage.clientWidth,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Pan back to Title on button click
+  if (panToTitleBtn) {
+    panToTitleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      heroStage.scrollTo({
+        left: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Pagination dots click handler
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      heroStage.scrollTo({
+        left: index * heroStage.clientWidth,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Track horizontal scroll position and update pagination dots
+  heroStage.addEventListener('scroll', () => {
+    const scrollLeft = heroStage.scrollLeft;
+    const stageWidth = heroStage.clientWidth || window.innerWidth;
+    const activeIndex = scrollLeft > stageWidth * 0.45 ? 1 : 0;
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeIndex);
+    });
   }, { passive: true });
 }
 

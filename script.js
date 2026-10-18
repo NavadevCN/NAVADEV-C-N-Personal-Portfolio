@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgress();
   initSmoothScroll();
   initHeroParallax();
+  initHeadingScrollAnimation();
 });
 
 /* --------------------------------------------------------------------------
@@ -93,7 +94,47 @@ function initHeroParallax() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Contact Form Transmission & Toast
+   6. Minimal Editorial Scroll Reveal for Content Headings (Excl. Hero)
+   -------------------------------------------------------------------------- */
+function initHeadingScrollAnimation() {
+  const headings = document.querySelectorAll(
+    '.content-zone .section-primary-heading, .content-zone .currently-focus-title, .content-zone .contact-manifesto-heading, .editorial-heading-reveal'
+  );
+
+  if (!headings.length) return;
+
+  // Ensure elements have animation styling applied
+  headings.forEach(heading => {
+    heading.classList.add('editorial-heading-reveal');
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    headings.forEach(heading => heading.classList.add('is-revealed'));
+    return;
+  }
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  headings.forEach(heading => {
+    observer.observe(heading);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   7. Contact Form Transmission & Toast
    -------------------------------------------------------------------------- */
 window.handleFormSubmit = function(e) {
   e.preventDefault();

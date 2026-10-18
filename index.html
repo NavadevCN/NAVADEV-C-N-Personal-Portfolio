@@ -24,7 +24,7 @@
   <!-- Minimalist Monogram Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Ctext x='50%25' y='68%25' font-family='sans-serif' font-weight='900' font-size='20' fill='%23ffffff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
 
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="styles.css?v=3.4">
   <noscript>
     <style>
       .editorial-heading-reveal {
@@ -54,94 +54,59 @@
          ========================================================================== -->
     <section class="hero-stage" id="hero">
       
-      <!-- Horizontal Track (Active on Mobile, Passthrough on Desktop) -->
-      <div class="hero-horizontal-track" id="heroTrack">
+      <!-- Unified Hero Canvas (Desktop composition, horizontally scrollable on mobile) -->
+      <div class="hero-canvas">
 
-        <!-- Panel 1: Typography, Navigation & Statement -->
-        <div class="hero-panel hero-panel-typography" id="heroPanelTypo">
-          
-          <!-- Top Row: Minimal Navigation (Upper Left) -->
-          <div class="hero-top-row">
-            <div class="hero-nav-block">
-              <ul class="hero-nav-links">
-                <li><a href="#about" class="hero-nav-link">About</a></li>
-                <li><a href="#journey" class="hero-nav-link">Journey</a></li>
-                <li><a href="#interests" class="hero-nav-link">Interests</a></li>
-                <li><a href="#contact" class="hero-nav-link">Contact</a></li>
-              </ul>
-              <div class="hero-copyright-tag">&copy; 2026</div>
-            </div>
+        <!-- Top Row: Minimal Navigation (Upper Left) -->
+        <div class="hero-top-row">
+          <div class="hero-nav-block">
+            <ul class="hero-nav-links">
+              <li><a href="#about" class="hero-nav-link">About</a></li>
+              <li><a href="#journey" class="hero-nav-link">Journey</a></li>
+              <li><a href="#interests" class="hero-nav-link">Interests</a></li>
+              <li><a href="#contact" class="hero-nav-link">Contact</a></li>
+            </ul>
+            <div class="hero-copyright-tag">&copy; 2026</div>
           </div>
+        </div>
 
-          <!-- Bottom Row: Oversized Typography & Controls -->
-          <div class="hero-bottom-row">
-            <div class="hero-bottom-left-stack">
-              <div class="hero-oversized-title">
-                <span class="hero-title-line">NAVADEV</span>
-                <div class="hero-title-subline-wrap">
-                  <span class="hero-title-line">C N</span>
-                  <div class="hero-identity-statement">
-                    <div class="identity-course">Computer Science &amp; Business Systems Engineer</div>
-                    <div class="identity-college">Model Engineering College, Kerala</div>
-                  </div>
+        <!-- Upper-Right: Dominant Cinematic Black & White Cutout Portrait -->
+        <div class="hero-portrait-canvas">
+          <div class="hero-portrait-wrap">
+            <img 
+              src="assets/images/myportrait.png" 
+              alt="Navadev C N" 
+              class="hero-portrait-img" 
+              id="heroPortrait"
+            >
+          </div>
+        </div>
+
+        <!-- Bottom Row: Oversized Typography with Identity Statement & Scroll Indicator -->
+        <div class="hero-bottom-row">
+          <div class="hero-bottom-left-stack">
+            <!-- Oversized Bold Sans-Serif Name Anchored to Left with Identity Statement Next to C N -->
+            <div class="hero-oversized-title">
+              <span class="hero-title-line">NAVADEV</span>
+              <div class="hero-title-subline-wrap">
+                <span class="hero-title-line">C N</span>
+                
+                <!-- Academic Identity Statement Placed in the Blank Space Next to C N -->
+                <div class="hero-identity-statement">
+                  <div class="identity-course">Computer Science &amp; Business Systems Engineer</div>
+                  <div class="identity-college">Model Engineering College, Kerala</div>
                 </div>
               </div>
             </div>
-
-            <!-- Mobile View Switcher Pill (Visible only on mobile) -->
-            <button class="hero-mobile-pan-btn" id="heroPanToPortrait" type="button" aria-label="View full portrait">
-              <span>Portrait</span>
-              <span class="pan-arrow">&rarr;</span>
-            </button>
-
-            <!-- Desktop Scroll Indicator -->
-            <div class="hero-scroll-indicator">
-              <span>Scroll</span>
-              <span class="scroll-line-anim"></span>
-            </div>
           </div>
 
+          <!-- Scroll Indicator on Right -->
+          <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <span class="scroll-line-anim"></span>
+          </div>
         </div>
 
-        <!-- Panel 2: Cutout Portrait (Side-by-side on Desktop, Standalone Panel on Mobile) -->
-        <div class="hero-panel hero-panel-portrait" id="heroPanelPortrait">
-          
-          <!-- Mobile Portrait Header (Visible only on mobile) -->
-          <div class="hero-portrait-mobile-header">
-            <button class="hero-mobile-pan-btn back-btn" id="heroPanToTitle" type="button" aria-label="Back to name">
-              <span class="pan-arrow">&larr;</span>
-              <span>Navadev C N</span>
-            </button>
-            <span class="hero-portrait-tag">CSBS '30 // MEC</span>
-          </div>
-
-          <div class="hero-portrait-canvas">
-            <div class="hero-portrait-wrap">
-              <img 
-                src="assets/images/myportrait.png" 
-                alt="Navadev C N" 
-                class="hero-portrait-img" 
-                id="heroPortrait"
-              >
-            </div>
-          </div>
-
-          <!-- Mobile Portrait Footer (Visible only on mobile) -->
-          <div class="hero-portrait-mobile-footer">
-            <a href="#about" class="hero-mobile-scroll-down">
-              <span>Scroll for Story</span>
-              <span>&darr;</span>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Mobile Persistent Navigation Dots (01 / 02) -->
-      <div class="hero-mobile-dots" id="heroMobileDots" aria-hidden="true">
-        <span class="hero-dot active" data-panel="0"></span>
-        <span class="hero-dot" data-panel="1"></span>
       </div>
 
     </section>
@@ -412,6 +377,6 @@
     <span id="toastFeedbackMessage">Message sent successfully</span>
   </div>
 
-  <script src="script.js?v=2.4"></script>
+  <script src="script.js?v=2.5"></script>
 </body>
 </html>

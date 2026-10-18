@@ -94,7 +94,7 @@ function initHeroParallax() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Minimal Editorial Scroll Reveal for Content Headings (Excl. Hero)
+   6. Kinetic Editorial Scroll Reveal for Content Headings (Every Scroll Down)
    -------------------------------------------------------------------------- */
 function initHeadingScrollAnimation() {
   const headings = document.querySelectorAll(
@@ -103,7 +103,6 @@ function initHeadingScrollAnimation() {
 
   if (!headings.length) return;
 
-  // Ensure elements have animation styling applied
   headings.forEach(heading => {
     heading.classList.add('editorial-heading-reveal');
   });
@@ -115,15 +114,23 @@ function initHeadingScrollAnimation() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -40px 0px',
-    threshold: 0.15
+    rootMargin: '0px 0px -30px 0px',
+    threshold: 0.05
   };
 
-  const observer = new IntersectionObserver((entries, obs) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const rect = entry.boundingClientRect;
+
       if (entry.isIntersecting) {
+        // Trigger the bold kinetic reveal on scroll down into view
         entry.target.classList.add('is-revealed');
-        obs.unobserve(entry.target);
+      } else {
+        // When element moves below the viewport (scrolled back up):
+        // Reset state so it animates again on every single scroll down!
+        if (rect.top > 0) {
+          entry.target.classList.remove('is-revealed');
+        }
       }
     });
   }, observerOptions);
